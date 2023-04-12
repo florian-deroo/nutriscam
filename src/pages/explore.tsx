@@ -6,17 +6,23 @@ import useExplore from "@/hooks/useExplore";
 import { Condition } from "@/types/GlobalTypes";
 import { useReactTable } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import {
+  AiFillCaretLeft,
+  AiFillCaretRight,
+  AiOutlineArrowRight,
+} from "react-icons/ai";
 import { RiCloseFill } from "react-icons/ri";
+import { pageSize } from "./api/explore";
 export default function Explore() {
   const [conditions, setConditions] = useState<Condition[]>([]);
+  const [page, setPage] = useState(1);
 
   const popUp = usePopUpContext();
-  const explore = useExplore(conditions);
+  const explore = useExplore(conditions, page);
 
-  useEffect(() => {
-    console.log(explore);
-  }, [explore]);
+	useEffect(() => {
+		console.log(explore)
+	}, [explore])
 
   return (
     <div className="w-full pb-40 max-w-[1200px] h-fit z-50 items-center justify-center flex flex-col gap-4 mt-10">
@@ -62,9 +68,10 @@ export default function Explore() {
           popUp.setPopUp(
             <SelectCondition
               close={() => popUp.setPopUp(undefined)}
-              addCondition={(condition: Condition) =>
-                setConditions((p) => [...p, condition])
-              }
+              addCondition={(condition: Condition) => {
+                setConditions((p) => [...p, condition]);
+                setPage(1);
+              }}
             />
           )
         }
@@ -72,7 +79,21 @@ export default function Explore() {
       >
         Ajouter une condition
       </button>
-			<Table data={explore}/>
+      <div className="w-[100px] flex flex-row justify-between">
+        {explore.length != 0 && page != 1 && (
+          <button onClick={() => setPage((page) => page - 1)}>
+            <AiFillCaretLeft />
+          </button>
+        )}
+				{explore.length != 0 && (
+          <button className="ml-auto" onClick={() => setPage((page) => page + 1)}>
+						<AiFillCaretRight />
+					</button>
+        )}
+        
+      </div>
+
+      <Table data={explore} />
     </div>
   );
 }

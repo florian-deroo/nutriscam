@@ -3,14 +3,15 @@ import { Condition, Display } from "@/types/GlobalTypes";
 import axios from "axios";
 import { useQuery } from "react-query";
 
-const useExplore = (conditions : Condition[]) => {
+const useExplore = (conditions : Condition[], page: number) => {
 
 	const explore = useQuery(
-		["explore", conditions],
+		["explore", conditions, page],
 		() => {
 
 			const query : ConditionsQuery = {
-				conditions: conditions
+				conditions: conditions,
+				page: page
 			}
 
 			return axios<Display[]>({

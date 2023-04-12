@@ -3,11 +3,14 @@ import { supabase } from '../_app'
 import { Condition, ConditionTypeNumber, ConditionTypeString, FeaturesENUM } from '@/types/GlobalTypes'
 
 export type ConditionsQuery = {
-  conditions: Condition[]
+  conditions: Condition[],
+  page: number
 }
 type NextApiRequestWithPage = NextApiRequest & {
   query: ConditionsQuery
 }
+
+export const pageSize = 12
 
 export default async function handler(
   req: NextApiRequestWithPage,
@@ -17,8 +20,9 @@ export default async function handler(
   const conditions : Condition[] = req.body.conditions
   let baseRequest = supabase.from('products').select('*')
 
+  const page = req.body.page
   if (!conditions || conditions.length == 0 ) {
-    res.status(200).json({})
+    res.status(200).json([])
     return
   }
 
@@ -44,7 +48,7 @@ export default async function handler(
     }
   })
 
-  let { data, error } = await baseRequest.limit(10)
+  let { data, error } = await baseRequest.range(page * pageSize - pageSize, page * pageSize - 1)
   
   res.status(200).json(data)
 }

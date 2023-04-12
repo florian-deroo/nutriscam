@@ -54,8 +54,7 @@ export default function Home() {
         className="bg-[#ead2ca] w-fit h-fit px-5 py-8 rounded-lg mt-10 flex flex-col items-center justify-center"
       >
         <span className="">
-          NutriScam est un site web innovant qui utilise l'approche
-          sémantique pour évaluer la qualité nutritionnelle des aliments.
+          NutriScam est un site web innovant qui permet d'évaluer la qualité nutritionnelle des aliments.
           <br />
           <br /> Notre objectif est de fournir des informations précises et
           fiables sur les produits alimentaires pour aider les consommateurs
@@ -63,9 +62,6 @@ export default function Home() {
         </span>
 
         <div className="flex flex-row gap-4 w-full items-center justify-center pt-6">
-          <button className="button-1">
-            Comment ça marche ?
-          </button>
           <Link href={"/explore"} className="button-2">
             Tester
           </Link>

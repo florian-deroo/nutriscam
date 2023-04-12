@@ -72,7 +72,7 @@ export const conditions: Feature[] = [
 		type: 1,
 	},
 	{
-		name: FeaturesENUM.NUTRI_SCORE,
+		name: FeaturesENUM.NUTRISCORE_SCORE,
 		displayName: "Nutriscore",
 		type: 1,
 	},

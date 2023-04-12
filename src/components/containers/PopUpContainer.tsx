@@ -31,8 +31,8 @@ export default function PopUpContainer({
 			}}
 		>
 			{element != undefined && (
-				<div className="fixed z-[600] w-full h-screen bg-[#FFDCC8] backdrop-blur-sm flex justify-center items-center">
-					<motion.div
+        <div className="fixed z-[600] w-full h-screen bg-[rgba(0,0,0,0.424)] backdrop-blur-sm flex justify-center items-center">
+				<motion.div
 						initial={{
 							scale: 0.7,
 							opacity: 0,

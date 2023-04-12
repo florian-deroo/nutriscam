@@ -13,7 +13,7 @@ export enum FeaturesENUM {
 	FIBER_100G,
 	PROTEINS_100G,
 	SALT_100G,
-	NUTRI_SCORE,
+	NUTRISCORE_SCORE,
 	NUTRISCORE_GRADE,
 	ECOSCORE_SCORE,
 	ECOSCORE_GRADE,
@@ -27,14 +27,16 @@ export type Feature = {
 }
 
 export enum ConditionTypeString {
-	EGAL,
-	CONTIENT
+	EGAL = "Egal au texte",
+	CONTIENT = "Contient le texte"
 }
 
+export type ConditionType = ConditionTypeNumber | ConditionTypeString;
+
 export enum ConditionTypeNumber {
-	PLUS,
-	MOINS,
-	EGAL
+	PLUS = "Plus (+)",
+	MOINS = "Moins (-)",
+	EGAL = "Egal (=)"
 }
 
 export type Condition = {
@@ -44,6 +46,25 @@ export type Condition = {
 }
 
 export type Display = {
-	feature: Feature,
-	value: string | number
+	code:               number;
+	url:                string;
+	product_name:       string;
+	generic_name:       string;
+	brands:             string;
+	categories_en:      string;
+	ingredients_text:   string;
+	allergens:          string;
+	serving_size:       string;
+	energy_100g:        number;
+	fat_100g:           number;
+	saturated_fat_100g: number;
+	carbohydrates_100g: number;
+	sugars_100g:        number;
+	fiber_100g:         number;
+	proteins_100g:      number;
+	salt_100g:          number;
+	nutriscore_score:   number;
+	nutriscore_grade:   string;
+	ecoscore_score:     number;
+	ecoscore_grade:     string;
 }
